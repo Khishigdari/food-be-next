@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
-import { categories } from "./data";
+import { defaultCategories } from "./data";
 
 export async function GET() {
-  const response = NextResponse.json({ data: categories }, { status: 200 });
+  const response = NextResponse.json(
+    { data: defaultCategories },
+    { status: 200 }
+  );
   response.headers.set("Access-Control-Allow-Origin", "*"); // Or '*' for all origins
   response.headers.set(
     "Access-Control-Allow-Methods",
@@ -17,10 +20,15 @@ export async function GET() {
 export async function POST(req: Request) {
   console.log("Category Post");
   const body = await req.json();
+  console.log({ body });
   const { newCategory } = body;
-  categories.push(newCategory);
+  console.log({ newCategory });
+  defaultCategories.push(newCategory);
 
-  const response = NextResponse.json({ data: categories }, { status: 200 });
+  const response = NextResponse.json(
+    { data: defaultCategories },
+    { status: 200 }
+  );
   response.headers.set("Access-Control-Allow-Origin", "*"); // Or '*' for all origins
   response.headers.set(
     "Access-Control-Allow-Methods",
