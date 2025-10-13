@@ -1,1 +1,1 @@
-export const defaultCategories = ["dishes", "main", "pizza"];
+// export const defaultCategories = ["dishes", "main", "pizza"];
