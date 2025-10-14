@@ -1,10 +1,14 @@
+import { getAllFood } from "@/lib/services/food-service";
 import { FoodType } from "@/lib/utils/types";
 import { uploadImageToCloudinary } from "@/lib/utils/uploadImage";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
-  return Response.json({ data: "Hello from Food" });
+  // return Response.json({ data: "Hello from Food" });
+  const foods = await getAllFood();
+  return new NextResponse(JSON.stringify({ data: foods }), { status: 200 });
 }
+
 export async function POST(request: NextRequest) {
   try {
     //Parse the formData from the request
@@ -14,7 +18,7 @@ export async function POST(request: NextRequest) {
     const name = formData.get("name") as string;
     const ingredients = formData.get("ingredients") as string;
     const price = formData.get("price") as string;
-    const category = formData.get("category") as string;
+    const category = formData.get("category") as string; //categoryId
     const image = formData.get("image") as File;
 
     //Console log the received data

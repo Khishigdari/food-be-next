@@ -3,8 +3,12 @@ import connectDB from "../mongodb";
 
 export const createCategory = async (name: string) => {
   await connectDB();
-  const newCategory = new Category({ name });
-  await newCategory.save();
+  // const newCategory = new Category({ name });
+  // await newCategory.save();
+
+  const newCategory = await Category.create({
+    name,
+  });
   return newCategory;
 };
 
