@@ -18,7 +18,21 @@ Promise<FoodType[]> => {
   return allFoods;
 };
 
-export const getAllFood = async () => {
+export const createFood = async (
+  name: string,
+  ingredients: string,
+  price: number,
+  categoryId: string,
+  imageUrl: string
+) => {
   await connectDB();
-  return await Food.find();
+  const newFood = new Food({
+    name,
+    ingredients,
+    price,
+    categoryId,
+    imageUrl,
+  });
+  await newFood.save();
+  return true;
 };

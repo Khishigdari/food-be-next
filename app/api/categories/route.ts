@@ -35,24 +35,15 @@ export async function GET() {
   });
 }
 export async function POST(req: Request) {
-  console.log("Category Post");
+  // console.log("Category Post");
   const body = await req.json();
-  console.log({ body });
+  // console.log({ body });
   const { newCategory } = body;
-  console.log({ newCategory });
+  // console.log({ newCategory });
   await createCategory(newCategory);
-
-  const response = NextResponse.json({ data: newCategory }, { status: 200 });
-  response.headers.set("Access-Control-Allow-Origin", "*"); // Or '*' for all origins
-  response.headers.set(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
-  );
-  response.headers.set(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization"
-  );
-  return response;
+  return new NextResponse(JSON.stringify({ messagr: "Category created" }), {
+    status: 200,
+  });
 }
 
 // ======== REVIEW =========
