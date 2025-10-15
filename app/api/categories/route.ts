@@ -41,7 +41,7 @@ export async function POST(req: Request) {
   const { newCategory } = body;
   // console.log({ newCategory });
   await createCategory(newCategory);
-  return new NextResponse(JSON.stringify({ messagr: "Category created" }), {
+  return new NextResponse(JSON.stringify({ message: "Category created" }), {
     status: 200,
   });
 }

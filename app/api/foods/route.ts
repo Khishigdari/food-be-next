@@ -1,4 +1,4 @@
-import { createFood, getAllFoods } from "@/lib/services/food-service";
+import { createFood, editFood, getAllFoods } from "@/lib/services/food-service";
 import { uploadImageToCloudinary } from "@/lib/utils/uploadImage";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -37,6 +37,46 @@ export async function POST(request: NextRequest) {
 
 export const GET = async () => {
   const foods = await getAllFoods();
-  console.log(foods);
-  return NextResponse.json({ message: "Hello" }, { status: 200 });
+
+  return NextResponse.json({ message: "Hello", foods }, { status: 200 });
+};
+
+export const PUT = async (req: Request) => {
+  // const body = await req.json();
+  // // const {name, price, ingredients, imageUrl, categoryId}
+  // // await createFood(name, price, ingredients, imageUrl, categoryId)
+  // return new NextResponse(JSON.stringify({ messagr: "Category created" }), {
+  //   status: 200,
+  // });
+
+  const formData = await req.formData();
+
+  // Extract food fields from formData
+  const name = formData.get("name") as string;
+  const ingredients = formData.get("ingredients") as string;
+  const price = formData.get("price") as string;
+  const categoryId = formData.get("categoryId") as string;
+  const image = formData.get("image") as File;
+
+  const uploadedUrl = await uploadImageToCloudinary(image);
+
+  const result = await editFood(
+    name,
+    ingredients,
+    Number(price),
+    categoryId,
+    uploadedUrl
+  );
+
+  if (result) {
+    return NextResponse.json(
+      { message: "Food item edited successfully" },
+      { status: 200 }
+    );
+  } else {
+    return NextResponse.json(
+      { message: "Food Failed to edit" },
+      { status: 400 }
+    );
+  }
 };

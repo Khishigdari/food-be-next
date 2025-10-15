@@ -26,13 +26,36 @@ export const createFood = async (
   imageUrl: string
 ) => {
   await connectDB();
+
   const newFood = new Food({
     name,
     ingredients,
     price,
     categoryId,
-    imageUrl,
+    image: imageUrl,
+    // imageUrl,
   });
   await newFood.save();
+  return true;
+};
+
+export const editFood = async (
+  name: string,
+  ingredients: string,
+  price: number,
+  categoryId: string,
+  imageUrl: string
+) => {
+  await connectDB();
+
+  const newFood = new Food({
+    name,
+    ingredients,
+    price,
+    categoryId,
+    image: imageUrl,
+    // imageUrl,
+  });
+  await newFood.edit();
   return true;
 };
