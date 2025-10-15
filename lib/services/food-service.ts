@@ -59,3 +59,9 @@ export const editFood = async (
   await newFood.edit();
   return true;
 };
+
+export const deleteFoods = async (categoryId: string) => {
+  await connectDB();
+  await Food.deleteOne({ _id: categoryId });
+  return;
+};
