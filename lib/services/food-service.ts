@@ -2,19 +2,10 @@ import { Food } from "../models/Food";
 import connectDB from "../mongodb";
 import { FoodType } from "../utils/types";
 
-export const getAllFoods = async (): //   name: string,
-//   price: string,
-//   ingredients: string,
-
-//   image: string,
-//   category: string
-Promise<FoodType[]> => {
+export const getAllFoods = async (): Promise<FoodType[]> => {
   await connectDB();
-  //   const newFood = new Food({ name, price, ingredients, image, category });
-  //   await newFood.save();
-  //   return newFood;
-
-  const allFoods: FoodType[] = await Food.find();
+  // const allFoods: FoodType[] = await Food.find();
+  const allFoods: FoodType[] = await Food.find({}).populate("categoryId");
   return allFoods;
 };
 
@@ -60,8 +51,8 @@ export const editFood = async (
   return true;
 };
 
-export const deleteFoods = async (categoryId: string) => {
+export const deleteFoods = async (_id: string) => {
   await connectDB();
-  await Food.deleteOne({ _id: categoryId });
+  await Food.deleteOne({ _id });
   return;
 };

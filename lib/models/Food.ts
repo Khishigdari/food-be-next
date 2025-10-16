@@ -1,13 +1,5 @@
-import mongoose, { model, models, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { FoodType } from "../utils/types";
-
-// type IFood = {
-//   name: string;
-//   price: number;
-//   ingredients: string;
-//   imageUrl: string;
-//   //   category: string;
-// };
 
 const FoodSchema = new Schema(
   {

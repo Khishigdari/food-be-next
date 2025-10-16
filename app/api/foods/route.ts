@@ -41,42 +41,37 @@ export const GET = async () => {
   return NextResponse.json({ message: "Hello", foods }, { status: 200 });
 };
 
-export const PUT = async (req: Request) => {
-  // const body = await req.json();
-  // // const {name, price, ingredients, imageUrl, categoryId}
-  // // await createFood(name, price, ingredients, imageUrl, categoryId)
-  // return new NextResponse(JSON.stringify({ messagr: "Category created" }), {
-  //   status: 200,
-  // });
+//EDIT
 
-  const formData = await req.formData();
+// export const PUT = async (req: Request) => {
+//   const formData = await req.formData();
 
-  // Extract food fields from formData
-  const name = formData.get("name") as string;
-  const ingredients = formData.get("ingredients") as string;
-  const price = formData.get("price") as string;
-  const categoryId = formData.get("categoryId") as string;
-  const image = formData.get("image") as File;
+//   // Extract food fields from formData
+//   const name = formData.get("name") as string;
+//   const ingredients = formData.get("ingredients") as string;
+//   const price = formData.get("price") as string;
+//   const categoryId = formData.get("categoryId") as string;
+//   const image = formData.get("image") as File;
 
-  const uploadedUrl = await uploadImageToCloudinary(image);
+//   const uploadedUrl = await uploadImageToCloudinary(image);
 
-  const result = await editFood(
-    name,
-    ingredients,
-    Number(price),
-    categoryId,
-    uploadedUrl
-  );
+//   const result = await editFood(
+//     name,
+//     ingredients,
+//     Number(price),
+//     categoryId,
+//     uploadedUrl
+//   );
 
-  if (result) {
-    return NextResponse.json(
-      { message: "Food item edited successfully" },
-      { status: 200 }
-    );
-  } else {
-    return NextResponse.json(
-      { message: "Food Failed to edit" },
-      { status: 400 }
-    );
-  }
-};
+//   if (result) {
+//     return NextResponse.json(
+//       { message: "Food item edited successfully" },
+//       { status: 200 }
+//     );
+//   } else {
+//     return NextResponse.json(
+//       { message: "Food Failed to edit" },
+//       { status: 400 }
+//     );
+//   }
+// };

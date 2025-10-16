@@ -3,11 +3,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const { categoryId } = body;
+  const { _id } = body;
   console.log("delete categoryId", body);
-  await deleteFoods(categoryId);
+  await deleteFoods(_id);
 
-  const response = NextResponse.json({ data: categoryId }, { status: 200 });
+  const response = NextResponse.json({ data: _id }, { status: 200 });
   response.headers.set("Access-Control-Allow-Origin", "*"); // Or '*' for all origins
   response.headers.set(
     "Access-Control-Allow-Methods",
