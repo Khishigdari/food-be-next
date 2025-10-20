@@ -1,5 +1,10 @@
 import { model, models, Schema } from "mongoose";
 
+type UserSchemaType = {
+  email: string;
+  password: string;
+};
+
 const UserSchema = new Schema(
   {
     email: { type: String, required: true, unique: true },
@@ -13,6 +18,4 @@ const UserSchema = new Schema(
   }
 );
 
-const User = models.User || model("User", UserSchema);
-
-export default User;
+export const User = models.User || model<UserSchemaType>("User", UserSchema);
