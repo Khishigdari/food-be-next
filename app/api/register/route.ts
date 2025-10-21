@@ -1,11 +1,11 @@
-import { createUSer } from "@/lib/services/user-service";
+import { createUser } from "@/lib/services/user-service";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const dataJson = await request.json();
   console.log(dataJson);
   const { email, password } = await dataJson;
-  const result = await createUSer(email, password);
+  const result = await createUser(email, password);
   if (result) {
     return NextResponse.json({
       success: true,

@@ -30,25 +30,30 @@ export const createFood = async (
   return true;
 };
 
-export const editFood = async (
-  name: string,
-  ingredients: string,
-  price: number,
-  categoryId: string,
-  imageUrl: string
-) => {
-  await connectDB();
+// export const editFood = async (
+//   name: string,
+//   ingredients: string,
+//   price: number,
+//   categoryId: string,
+//   imageUrl: string
+// ) => {
+//   await connectDB();
 
-  const newFood = new Food({
-    name,
-    ingredients,
-    price,
-    categoryId,
-    image: imageUrl,
-    // imageUrl,
-  });
-  await newFood.edit();
-  return true;
+//   const newFood = new Food({
+//     name,
+//     ingredients,
+//     price,
+//     categoryId,
+//     image: imageUrl,
+//     // imageUrl,
+//   });
+//   await newFood.edit();
+//   return true;
+// };
+
+export const editFood = async (foodId: string, foodData: FoodType) => {
+  await connectDB();
+  return await Food.findByIdAndUpdate(foodId, foodData, { new: true });
 };
 
 export const deleteFoods = async (_id: string) => {
