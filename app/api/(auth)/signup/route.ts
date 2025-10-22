@@ -1,25 +1,25 @@
-// import { User } from "@/lib/models/User";
-// import connectDB from "@/lib/mongodb";
-// import bcrypt from "bcrypt";
-// import { NextResponse } from "next/server";
+import { User } from "@/lib/models/User";
+import connectDB from "@/lib/mongodb";
+import bcrypt from "bcrypt";
+import { NextResponse } from "next/server";
 
-// export const POST = async (request: Request) => {
-//   await connectDB();
+export const POST = async (request: Request) => {
+  await connectDB();
 
-//   const body = await request.json();
+  const body = await request.json();
 
-//   const { password, email } = body;
+  const { password, email } = body;
 
-//   const hashPassword = bcrypt.hashSync(password, 10);
+  const hashPassword = bcrypt.hashSync(password, 10);
 
-//   console.log("MY PASSWORD", password);
-//   console.log("HASH PASSWORD", hashPassword);
+  console.log("MY PASSWORD", password);
+  console.log("HASH PASSWORD", hashPassword);
 
-//   const user = await User.create({
-//     email: email,
-//     password: hashPassword,
-//     role: "USER",
-//   });
+  const user = await User.create({
+    email: email,
+    password: hashPassword,
+    role: "USER",
+  });
 
-//   return NextResponse.json({ message: "Successfully created user", user });
-// };
+  return NextResponse.json({ message: "Successfully created user", user });
+};
