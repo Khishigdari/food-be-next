@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { FoodType } from "../utils/types";
+import { FoodType } from "../types/types";
 
 const FoodSchema = new Schema(
   {
