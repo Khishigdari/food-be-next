@@ -1,7 +1,7 @@
-export type FoodType = {
-  name: string;
-  ingredients: string;
-  image: string;
-  price: number;
-  category: string;
-};
+// export type FoodType = {
+//   name: string;
+//   ingredients: string;
+//   image: string;
+//   price: number;
+//   category: string;
+// };
