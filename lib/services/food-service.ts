@@ -52,8 +52,13 @@ export const createFood = async (
 // };
 
 export const editFood = async (foodId: string, foodData: FoodType) => {
-  await connectDB();
-  return await Food.findByIdAndUpdate(foodId, foodData, { new: true });
+  try {
+    await connectDB();
+    return await Food.findByIdAndUpdate(foodId, foodData, { new: true });
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
 };
 
 export const deleteFoods = async (_id: string) => {

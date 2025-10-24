@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   const body = await req.json();
   const { _id } = body;
-  console.log("delete categoryId", body);
+  console.log("delete food", body);
   await deleteFoods(_id);
 
   const response = NextResponse.json({ data: _id }, { status: 200 });
