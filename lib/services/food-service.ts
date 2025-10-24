@@ -54,7 +54,7 @@ export const createFood = async (
 export const editFood = async (foodId: string, foodData: FoodType) => {
   try {
     await connectDB();
-    return await Food.findByIdAndUpdate(foodId, foodData, { new: true });
+    return await Food.findByIdAndUpdate(foodId, { ...foodData }, { new: true });
   } catch (error) {
     console.error(error);
     return error;
