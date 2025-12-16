@@ -5,7 +5,7 @@ type UserSchemaType = {
   password: string;
 };
 
-const UserSchema = new Schema(
+export const UserSchema = new Schema(
   {
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
