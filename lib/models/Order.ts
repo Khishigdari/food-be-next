@@ -8,11 +8,11 @@ const FoodOrderItem = new Schema({
 
 export const FoodOrderSchema = new Schema(
   {
-    userId: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+    // userId: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "User",
+    //   required: true,
+    // },
     totalPrice: { type: Number, required: true },
     foodOrderItems: { type: [FoodOrderItem], required: true },
     status: {

@@ -26,6 +26,8 @@ type CreateOrderItem = {
   quantity: number;
 };
 
+// export const createOrder = async (userId: string, items: CreateOrderItem[]) => {
+
 export const createOrder = async (items: CreateOrderItem[]) => {
   await connectDB();
 
@@ -60,4 +62,10 @@ export const createOrder = async (items: CreateOrderItem[]) => {
   });
 
   return order;
+};
+
+export const getAllOrders = async () => {
+  await connectDB();
+
+  return await Order.find();
 };

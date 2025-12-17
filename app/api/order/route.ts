@@ -37,12 +37,22 @@
 //   }
 // }
 
-import { createOrder } from "@/lib/services/order-service";
+import { createOrder, getAllOrders } from "@/lib/services/order-service";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
+    // const { userId, items } = await req.json();
+
     const { items } = await req.json();
+    // if (!userId) {
+    //   return NextResponse.json(
+    //     { success: false, message: "userId is required" },
+    //     { status: 400 }
+    //   );
+    // }
+
+    // const order = await createOrder(userId, items);
 
     const order = await createOrder(items);
 
@@ -57,3 +67,12 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+export const GET = async () => {
+  const orders = await getAllOrders();
+
+  return NextResponse.json(
+    { message: "Getting all orders", orders },
+    { status: 200 }
+  );
+};
